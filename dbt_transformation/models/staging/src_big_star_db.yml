@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: "{{ env_var('DBT_DATABASE', 'postgres-zoomcamp') }}"
+    schema: "{{ env_var('DBT_SCHEMA', 'public') }}"
+    freshness:
+      warn_after:
+        count: 24
+        period: hour
+    loaded_at_field: "_airbyte_extracted_at"
+
+    tables:
+    - name: customers
+    - name: orders
+    - name: products
+    - name: order_items
+
+    
